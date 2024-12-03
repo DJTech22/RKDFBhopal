@@ -1,0 +1,92 @@
+{% load static %}
+<html>
+
+<head>
+    <style>
+        #success-main {
+            padding-top: 20px;
+            height: 100vh;
+        }
+        
+        .success-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            width: 500px;
+            text-align: center;
+        }
+        
+        .success-details h4 {
+            color: #29964c;
+            margin: 0px;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        span {
+            font-size: 12px;
+            font-weight: 500;
+            color: gray;
+        }
+        
+        button {
+            background-color: gray;
+            margin-top: 10%;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+        
+        @keyframes zoominoutsinglefeatured {
+            0% {
+                transform: scale(1, 1);
+            }
+            50% {
+                transform: scale(1.1, 1.1);
+            }
+            100% {
+                transform: scale(1, 1);
+            }
+        }
+        
+        .cardcontainer img {
+            animation: zoominoutsinglefeatured 1s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <section id="success-main">
+            <div class="success-card">
+                <div class="cardcontainer">
+                    <!-- <img class="galleryImg" src="https://www.google.com/logos/doodles/2014/2014-winter-olympics-5710368030588928-hp.jpg"> -->
+                    <img src="{% static '/images/faild.png' %}" width="150px">
+                </div>
+                <br>
+                <div class="success-details">
+                    <h4 style="color: #29964c;">Payment Faild</h4>
+                    <h3 style="color: #29964c;">Please try again after some time</h3>
+
+                    <span>{{context}}</span><br>
+                    <button routerLink="/"><a style="text-decoration: none;color: #fff;" href="{% url 'studentregistration' %}">Go Home</a></button>
+                </div>
+
+            </div>
+        </section>
+    </center>
+</body>
+
+<script>
+    window.setTimeout(function() {
+        // Move to a new location or you can do something else
+        window.location.href =
+            "https://rkdf.payjix.com/";
+    }, 3000);
+</script>
+
+</html>

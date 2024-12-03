@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KCEGZKG9NX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KCEGZKG9NX');
+</script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RKDF UNIVERSITY BHOPAL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <style>
+        section {
+            padding: 50px;
+        }
+        
+        .main {
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px 5px #00000075;
+            padding-left: 150px;
+        }
+        
+        .side {
+            background-color: #ce5959c4;
+            padding: 35px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+        
+        h4 {
+            text-align: center;
+        }
+        
+        .logo {
+            width: 100px;
+            justify-content: center;
+        }
+        
+        h1 {
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .btn {
+            border-radius: 20px;
+            background-color:rgb(27, 27, 90);
+            border: none;
+            transition: 0.4s;
+            box-shadow: 0px 0px 1px 1px #00000058;
+        }
+        
+        .btn:hover {
+            color: #fff;
+            background-color: #000;
+            border: none;
+        }
+        
+        .col-md-8 input::placeholder {
+            color: rgba(128, 128, 128, 0.658);
+        }
+        
+        .upper {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            color: #ffffffc6;
+            background-color: #CE5959;
+            display: flex;
+            padding: 20px;
+        }
+        
+        .upper img {
+            border-radius: 40px;
+            width: 100px;
+        }
+        
+        .hide {
+            margin-left: 25px;
+        }
+        #avantika{
+            margin-left: -82px; margin-right: -110px;
+        }
+        
+        @media screen and (min-width: 1000px) {
+            .upper {
+                display: none;
+            }
+            .upper img {
+                width: 30px;
+                border-radius: 40px;
+            }
+            .hide {
+                display: none;
+            }
+        }
+        
+        @media screen and (max-width: 760px) {
+            .upper {
+                display: none;
+            }
+            .main{
+                padding-left: 0px;
+            }
+            #avantika{
+            margin-left: 0px; margin-right: 0px;
+        }
+        }
+        
+        @media screen and (max-width: 1000px) {
+            .side {
+                display: none;
+            }
+          
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container main">
+           
+            <div class="row">
+               
+                <div class="col-md-9">
+                    <div class="container justify-content-center pad">
+                        <div class="row text-center">
+                            <div class="col-md-12">
+                                <img src="{% static 'images/rkdf.png' %}" class="logo img-fluid mt-3" alt="">
+                            </div>
+                        </div>
+
+                        <form method="POST">
+                           {% csrf_token %}
+                            <div class="row pt-0 justify-content-center" id="avantika" >
+                                <div class="col-md-12">
+                                    <h1>RKDF<span> University</span> Bhopal</h1>
+                                </div>
+                            </div>
+    
+                            <div class="row pt-4 justify-content-center">
+                               
+                                <div class="col-md-12">
+                                     <div style="text-align: center;"><label for="" class="form-label">Enter Student ID<sup style="color: red;">*</sup></label>
+                                    </div>
+                                
+                                    <input type="text" class="form-control" name='EnrollNo' placeholder="" required>                               
+                                </div>
+                            </div>
+
+                            <div class="row pt-4 pb-5">
+                                <div class="col-md-12 text-center">
+                                    <a href="">
+                                        <button type="submit" class="btn btn-primary" >Procced</button>
+                                    </a>
+    
+                                </div>
+                            </div>
+                        </form>                                             
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

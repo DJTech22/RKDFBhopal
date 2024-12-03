@@ -1,0 +1,16 @@
+<!--extends the base_layout.html-->
+
+{% block content %}
+    <div class="hedding">
+        </div>
+
+    <div class="form-container">
+        <h2>API RESPONSE</h2>
+        <hr>
+        <!--add csrf token for sending data to the server-->
+        
+        <p>
+            {{response_data}}
+        </p>
+    </div>
+{% endblock content %}

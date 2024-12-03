@@ -1,0 +1,552 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/rkdf.png" />
+    <!-- Latest compiled and minified CSS -->
+
+    <title>RKDF UNIVERSITY BHOPAL</title>
+    <link rel="icon" type="image/x-icon" img src="{% static '/images/rkdf.png' %}">
+    <script src="https://erp-sdk.graydev.tech/v1/gqerp-sdk.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+        .container {
+            max-width: 65% !important;
+            width: 100%;
+            height: auto !important;
+            margin-top: 20px !important;
+            background-color: #fff;
+            padding: 3px 1px !important;
+            margin-left: 18% !important;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgb(0 0 0 / 15%);
+        }
+        
+        .container .title {
+            font-size: 25px;
+            font-weight: 500;
+            position: relative;
+            max-height: max-content;
+        }
+        
+        em.error {
+            color: red;
+            font-size: 13px;
+        }
+        /* // .container .title::before{
+    //   content: "";
+    //   position: absolute;
+    //   left: 0;
+    //   bottom: 0;
+    //   height: 3px;
+    //   width: 30px;
+    //   border-radius: 5px;
+    //   background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    // } */
+        
+        .content form .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 1px 0 12px 0;
+        }
+        
+        form .user-details .input-box {
+            margin-bottom: 10px;
+            width: calc(100% / 2 - 20px);
+        }
+        
+        form .input-box span.details {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .user-details .input-box input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .user-details .input-box input:focus,
+        .user-details .input-box input:valid {
+            border-color: #9b59b6;
+        }
+        
+        .user-details .input-box select {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            background: white;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .user-details .input-box select:focus,
+        .user-details .input-box select:valid {
+            border-color: #9b59b6;
+        }
+        
+        form .gender-details .gender-title {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        
+        form .category {
+            display: flex;
+            width: 80%;
+            margin: 14px 0;
+            justify-content: space-between;
+        }
+        
+        form .category label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        form .category label .dot {
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background: #d9d9d9;
+            border: 5px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        #dot-1:checked~.category label .one,
+        #dot-2:checked~.category label .two,
+        #dot-3:checked~.category label .three {
+            background: #9b59b6;
+            border-color: #d9d9d9;
+        }
+        
+        form input[type="radio"] {
+            display: none;
+        }
+        
+        form .button {
+            height: 45px;
+            margin: 35px 0;
+            text-align: right;
+        }
+        
+        .pay-btn {
+            /* //  text-align: right; */
+            height: 6%;
+            width: 25%;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 10px 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #1D267D, #5D9C59);
+        }
+        
+        form .button input:hover {
+            /* transform: scale(0.99); */
+            background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+        }
+        
+        h1 {
+            margin: 0;
+        }
+        
+        .title-form {
+            position: relative;
+            margin-left: 50px;
+            /* 
+            top: -88px;
+            left: 210px; */
+            color: #a3007c;
+            font-size: 35px;
+            font-weight: 800;
+        }
+        
+        .address {
+            position: relative;
+            top: 0px px;
+            left: -10px;
+            color: rgb(3, 4, 5);
+            font-size: 20px;
+        }
+        
+        @media (max-width: 900px) {
+            #collagename {
+                width: 200px;
+                margin-left: 105px;
+            }
+            .container {
+                max-width: 100%;
+                height: 250px;
+            }
+            form .user-details .input-box {
+                margin-bottom: 2px;
+                width: 100%;
+            }
+            form .category {
+                width: 100%;
+            }
+            .content form .user-details {
+                max-height: auto !important;
+                overflow-y: scroll;
+            }
+            .user-details::-webkit-scrollbar {
+                width: 5px;
+            }
+        }
+        
+        @media (max-width: 459px) {
+            .container .content .category {
+                flex-direction: column;
+            }
+            /* h1{
+        border: 0px solid #ddd;
+      
+      width: 100%;
+        
+        margin-left: 50px;
+    
+        
+        
+        padding: 0px 30px;
+        border: none;
+        cursor: pointer;
+       
+    } */
+        }
+        
+        .mobile {
+            display: none;
+        }
+        
+        #footer {
+            position: fixed;
+            bottom: 0px;
+            left: 0;
+            padding: 10px;
+            background-color: white !important;
+            width: 100%;
+        }
+        
+        #footer span a {
+            margin: 20px;
+            text-decoration: none;
+        }
+        
+        .margin-left {
+            margin-left: 10%;
+        }
+        
+        @media screen and (max-width: 769px) {
+            #collagename {
+                width: 200px !important;
+                margin-left: 5px !important;
+                position: relative;
+                left: 20px;
+            }
+            #logo {
+                width: 40% !important;
+                height: 40% !important;
+            }
+            .form-container {
+                width: 98% !important;
+                margin-top: 5%;
+                background-color: #fff;
+                margin-left: 1% !important;
+                padding: 30px 30px;
+                height: auto;
+            }
+            .input-box {
+                width: 100%;
+            }
+            .desktop {
+                display: none;
+                /* margin-right: 45px; */
+            }
+            .margin-left {
+                margin-left: 10%;
+            }
+            .mobile {
+                display: initial;
+            }
+            .title-fom {
+                position: relative;
+                top: -86px;
+                left: 10px;
+                color: red;
+                font-size: 16px;
+            }
+            .address {
+                position: relative;
+                /* // left: 108px; */
+                font-size: 14px;
+                color: gray;
+                top: -4px;
+            }
+        }
+        /*.container{
+        max-width: 700px;
+        width: 100%;
+        /* // margin-top: 20px !important; */
+        /* background-color: #fff;
+        padding: 25px 10px;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+      } */
+        
+        #collagename {
+            width: 400px;
+            margin-left: 105px;
+        }
+        
+        #logo {
+            width: 250px;
+            height: 200px;
+        }
+        
+        .form-container {
+            width: 70%;
+            background-color: #fff;
+            margin-left: 15%;
+            margin-top: 3.3%;
+            padding: 15px 30px;
+            height: auto !important;
+        }
+        /* Chrome, Safari, Edge, Opera */
+        
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        /* Firefox */
+        
+        input[type="number"] {
+            -moz-appearance: textfield !important;
+        }
+        
+        @media (max-width: 410px) {
+            .title-form {
+                margin-left: -16px;
+            }
+        }
+        
+        .registration-form button[type="submit"] {
+            background-color: #864AF9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 459px) {
+            .container .content .category {
+                flex-direction: column;
+            }
+            h3 {
+                text-align: center;
+                display: flex;
+                font: 12px;
+                width: 100%;
+            }
+            /* h1 {
+                    border: 0px solid #ddd;
+                    width: 100%;
+                    font-size: 12px;
+                    border: none;
+                    cursor: pointer;
+                } */
+        }
+        /* .des {
+            background-color: rgba(0, 0, 0, 0.516);
+        } */
+    </style>
+</head>
+<script type="application/javascript" src="https://securegw.paytm.in//merchantpgpui/checkoutjs/merchants/{{mid}}.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+{% load static%}
+
+<body style="background-image: url('../static/images/images/');
+ height: 7in;  background-size: cover; background-repeat: no-repeat;  ">
+    <section class="form-container">
+
+        <div class="des row ">
+            <div class="text-center">
+
+                <h2 class="text-center mb-4"> <img id="logo" src="{% static '/images/rkdf.png' %}" class="img-fluid w-25" alt="this is logo"> </h2>
+
+            </div>
+
+        </div>
+
+        <!-- <div>Already Register ?<a routerLink="/login" style="margin-left: 10px;">Login</a> </div> -->
+        <div class="content">
+            <div class="table details-row">
+                <form action="/initiate_payment/" method="POST">
+                    {% csrf_token %}
+                    <div class="user-details">
+                        <div class="input-box">
+                            <input hidden id="txnid" class="txnid" name="txnid" value="{{txnid}}" placeholder="531A99D8F2">
+                        </div>
+
+                        <div class="input-box">
+                            <input hidden type="text" name="enrollmentNo" value="{{enrollmentNo}}" required>
+                        </div>
+                        <div class="input-box">
+                            <input hidden type="text" name="firstname" value="{{firstname}}" required>
+                        </div>
+                        <div class="input-box">
+                            <input hidden type="text" value="{{FatherName}}" name="FatherName" id="FatherName" placeholder="Enter Father Name" required>
+                        </div>
+                        <div hidden class="input-box">
+                            <input hidden id="email" class="email" name="email" value="{{email}}" placeholder="initiate.payment@easebuzz.in">
+                        </div>
+                        <div class="input-box">
+                            <input hidden id="phone" class="phone" name="phone" value="{{phone}}" placeholder="0123456789">
+                        </div>
+                        <div class="input-box">
+                            <input hidden type="tel" name="amount" value="{{amount}}" required>
+                        </div>
+                        <div class="input-box">
+                            <input hidden id="productinfo" class="productinfo" name="productinfo" value="Apple" placeholder="Apple Laptop">
+                        </div>
+
+                        <div class="input-box">
+                            <input hidden id="surl" class="surl" name="surl" value="https://rkdf.payjix.com/response/" placeholder="https://rkdf.payjix.com/response/">
+                        </div>
+
+                        <div class="input-box">
+                            <input hidden id="furl" class="furl" name="furl" value="https://rkdf.payjix.com/response/" placeholder="https://rkdf.payjix.com/response/">
+                        </div>
+                        <div class="form-field">
+                            <input hidden id="udf1" class="udf1" name="udf1" value="{{FatherName}}" placeholder="User description3">
+                        </div>
+                        <div class="form-field">
+                            <input hidden id="udf2" class="udf2" name="udf2" value="{{feeType}}" placeholder="User description3">
+                        </div>
+
+                        <div class="form-field">
+                            <input hidden id="udf3" class="udf3" name="udf3" value="{{Course}}" placeholder="User description3">
+                        </div>
+
+                        <div class="form-field">
+                            <input hidden id="udf4" class="udf4" name="udf4" value="{{enrollmentNo}}" placeholder="User description4">
+                        </div>
+
+                        <div class="form-field">
+                            <input hidden id="udf5" class="udf5" name="udf5" value="udf5" placeholder="User description5">
+                        </div>
+
+                        <div class="form-field">
+                            <input hidden id="address1" class="address1" name="address1" value="Nanak palace " placeholder="#250, Main 5th cross,">
+                        </div>
+
+                        <div class="form-field">
+                            <input hidden id="address2" class="address2" name="address2" value="Bholram Indore" placeholder="Saket nagar, Pune">
+                        </div>
+
+                        <div class="form-field">
+                            <input hidden id="city" class="city" name="city" value="Indore" placeholder="Pune">
+                        </div>
+
+                        <div class="form-field">
+                            <input hidden id="state" class="state" name="state" value="Maharashtra" placeholder="Maharashtra">
+                        </div>
+
+                        <div class="form-field">
+                            <input hidden id="country" class="country" name="country" value="India" placeholder="India">
+                        </div>
+
+                        <div class="form-field">
+                            <input hidden id="zipcode" class="zipcode" name="zipcode" value="123456" placeholder="123456">
+                        </div>
+
+                    </div>
+
+                    <table class="table" style="border: 1px #fff solid">
+                        {% if enrollmentNo %}
+                        <tr>
+                            <td><strong>Enrollment Number</strong></td>
+                            <td>{{enrollmentNo}}</td>
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td><strong>Student Name</strong></td>
+                            <td>{{firstname}}</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Father's Name</strong></td>
+                            <td>{{FatherName}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phone</strong></td>
+                            <td>{{phone}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Course</strong></td>
+                            <td>{{Course}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>Fee Type</strong></td>
+                            <td>{{feeType}}</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Amount</strong></td>
+                            <td>{{amount}}</td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <div style="text-align: center;">
+                        <button type="submit" disabled  class="btn btn-primary">Confirm & pay</button>
+                    </div>
+                </form>
+
+                <div class="main-content text-center">
+                    <!-- <button  type="submit"> <a href="/initiate_payment/{{payment_page}}">Confirm & pay</a> </button> -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+<script>
+    window.addEventListener("pageshow", function(event) {
+        var historyTraversal = event.persisted ||
+            (typeof window.performance != "undefined" &&
+                window.performance.navigation.type === 2);
+        if (historyTraversal) {
+            // Handle page restore.
+            window.location.reload();
+        }
+    });
+</script>
+
+</html>
